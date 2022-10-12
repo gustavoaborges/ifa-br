@@ -24,6 +24,12 @@ RUN yo @plone/volto \
     plone-frontend \
     --description "Plone frontend using Volto" \
     --addon "@eeacms/volto-listing-block" \
+    --addon "@eeacms/volto-accordion-block" \
+    --addon "@kitconcept/volto-blocks-grid" \
+    --addon "@kitconcept/volto-button-block" \
+    --addon "@kitconcept/volto-heading-block" \
+    --addon "@kitconcept/volto-separator-block" \
+    --addon "@kitconcept/volto-slider-block" \
     --skip-install \
     --skip-workspaces \
     --volto=${VOLTO_VERSION} \
