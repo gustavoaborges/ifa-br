@@ -27,7 +27,6 @@ services:
     image: gustavoaborges/ifa-br-backend:latest
     environment:
       SITE: IFABR
-      ZEO_ADDRESS: db:8100
     ports:
     - "8080:8080"
     depends_on:
@@ -37,6 +36,9 @@ services:
     image: plone/plone-zeo:latest
     restart: always
     volumes:
-      - ./backend/data:/data
+      - data:/data
     ports:
     - "8100:8100"
+
+volumes:
+  data: {}
