@@ -12,7 +12,7 @@ services:
     - "80:80"
 
   frontend:
-    build: frontend/.
+    image: gustavoaborges/ifa-br-frontend:latest
     environment:
       RAZZLE_INTERNAL_API_PATH: http://backend:8080/IFABR
       ADDONS: "@eeacms/volto-listing-block"
@@ -22,7 +22,7 @@ services:
       - backend
 
   backend:
-    build: backend/.
+    image: gustavoaborges/ifa-br-backend:latest
     environment:
       SITE: IFABR
     volumes:
