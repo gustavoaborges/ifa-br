@@ -12,16 +12,20 @@ services:
       - frontend
     ports:
     - "80:80"
+    networks:
+      - web
+      - services
 
   frontend:
     image: gustavoaborges/ifa-br-frontend:latest
     environment:
       RAZZLE_INTERNAL_API_PATH: http://backend:8080/IFABR
-      ADDONS: "@eeacms/volto-listing-block"
     ports:
     - "3000:3000"
     depends_on:
       - backend
+    networks:
+      - services
 
   backend:
     image: gustavoaborges/ifa-br-backend:latest
@@ -32,6 +36,8 @@ services:
     - "8080:8080"
     depends_on:
       - db
+    networks:
+      - services
 
   db:
     image: plone/plone-zeo:latest
@@ -40,6 +46,15 @@ services:
       - data:/data
     ports:
     - "8100:8100"
+    networks:
+      - services
 
 volumes:
   data: {}
+
+networks:
+  services:
+    internal: true
+  web:
+    internal: false #needs to be created by other file
+    name: shared-web
