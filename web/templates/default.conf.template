@@ -33,7 +33,7 @@ server {
   
 
   location ~ /\+\+api\+\+($|/.*) {
-      rewrite ^/(\+\+api\+\+\/?)+($|/.*) /VirtualHostBase/http/$server_name/IFABR/++api++/VirtualHostRoot/$2 break;
+      rewrite ^/(\+\+api\+\+\/?)+($|/.*) /VirtualHostBase/https/$server_name/IFABR/++api++/VirtualHostRoot/$2 break;
       proxy_pass http://backend;
   }
 
