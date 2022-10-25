@@ -27,7 +27,7 @@ build:
 
 .PHONY: build-frontend
 build-frontend:
-	docker build -t ifa-br-backend-image backend/.
+	docker build -t ifa-br-frontend-image frontend/.
 
 .PHONY: backup-db
 backup-db:
@@ -36,5 +36,5 @@ backup-db:
 
 .PHONY: restore-db
 restore-db:
-	scp root@$(server):./backup.tar ~/backup.tar
+	scp ./backup.tar root@$(server):~/backup.tar
 	ssh root@$(server) "(docker run --rm --volumes-from ifa-br_db_1 -v ~:/backup busybox sh -c \"cd /data && tar xvf /backup/backup.tar --strip 1\"; cd ifa-br; docker-compose down && docker-compose up -d)"

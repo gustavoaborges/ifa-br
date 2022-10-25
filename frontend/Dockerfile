@@ -60,5 +60,5 @@ WORKDIR /app
 EXPOSE 3000
 CMD ["yarn", "start:prod"]
 
-COPY src/* /app/src/customizations
+COPY ./src /app/src
 RUN yarn build
