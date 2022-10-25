@@ -6,7 +6,7 @@ upstream frontend {
 }
 server {
     listen 80;
-    server_name ${NGINX_SERVER_NAME};    
+    server_name ${NGINX_SERVER_NAME} www.${NGINX_SERVER_NAME};
     location / {
         return 301 https://$host$request_uri;
     }    
@@ -24,7 +24,7 @@ server {
 	gzip_types text/plain text/css application/json application/x-javascript application/javascript text/xml application/xml application/xml+rss text/javascript;
 
   listen 443  ssl;
-  server_name  ${NGINX_SERVER_NAME};
+  server_name  ${NGINX_SERVER_NAME} www.${NGINX_SERVER_NAME};
 
   ssl_certificate /etc/letsencrypt/live/ifabr.org/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/ifabr.org/privkey.pem;
@@ -34,19 +34,19 @@ server {
 
   location ~ /\+\+api\+\+($|/.*) {
       rewrite ^/(\+\+api\+\+\/?)+($|/.*) /VirtualHostBase/http/$server_name/IFABR/++api++/VirtualHostRoot/$2 break;
-      proxy_pass http://backend;
+      proxy_pass https://backend;
   }
 
   location ~ / {
       location ~* \.(js|jsx|css|less|swf|eot|ttf|otf|woff|woff2)$ {
           add_header Cache-Control "public";
           expires +1y;
-          proxy_pass http://frontend;
+          proxy_pass https://frontend;
       }
       location ~* static.*\.(ico|jpg|jpeg|png|gif|svg)$ {
           add_header Cache-Control "public";
           expires +1y;
-          proxy_pass http://frontend;
+          proxy_pass https://frontend;
       }
 
       proxy_set_header        Host $host;
@@ -54,7 +54,7 @@ server {
       proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header        X-Forwarded-Proto $scheme;
       proxy_redirect http:// https://;
-      proxy_pass http://frontend;
+      proxy_pass https://frontend;
   }
   location /.well-known/acme-challenge/ {
     root /var/www/certbot;
