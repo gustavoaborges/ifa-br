@@ -28,6 +28,8 @@ build:
 .PHONY: build-frontend
 build-frontend:
 	docker build -t ifa-br-frontend-image frontend/.
+	docker tag ifa-br-frontend-image:latest gustavoaborges/ifa-br-frontend:latest
+	docker push gustavoaborges/ifa-br-frontend:latest
 
 .PHONY: backup-db
 backup-db:

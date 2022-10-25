@@ -40,8 +40,8 @@
        <Container>
          <Segment basic inverted color="grey" className="discreet">
            <FormattedMessage
-             id="PORRA Direitos reservados a Iniciativa Federativa Anarquista do Brasil"
-             defaultMessage="PORRA Direitos reservados a Iniciativa Federativa Anarquista do Brasil"
+             id="Direitos reservados a Iniciativa Federalista Anarquista do Brasil"
+             defaultMessage="Direitos reservados a Iniciativa Federalista Anarquista do Brasil"
              values={{
                plonecms: (
                  <FormattedMessage
@@ -107,7 +107,7 @@
                />
              </UniversalLink>
            </div>
-           <div role="listitem" className="item">
+           {/* <div role="listitem" className="item">
              <UniversalLink
                className="item"
                href={
@@ -118,15 +118,15 @@
              >
                <FormattedMessage id="Contact" defaultMessage="Contact" />
              </UniversalLink>
-           </div>
-           <div role="listitem" className="item">
+           </div> */}
+           {/* <div role="listitem" className="item">
              <a className="item" href="https://plone.org">
                <FormattedMessage
                  id="Powered by Plone & Python"
                  defaultMessage="Powered by Plone & Python"
                />
              </a>
-           </div>
+           </div> */}
          </List>
        </Container>
      </Segment>

@@ -7,17 +7,28 @@ services:
       - NGINX_SERVER_NAME
     volumes:
       - ./web/templates:/etc/nginx/templates
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
     depends_on:
       - backend
       - frontend
     ports:
     - "80:80"
+    - "443:443"
+    restart: always
     networks:
       - web
       - services
 
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+
   frontend:
     image: gustavoaborges/ifa-br-frontend:latest
+    # build: frontend/.
     environment:
       RAZZLE_INTERNAL_API_PATH: http://backend:8080/IFABR
     ports:
