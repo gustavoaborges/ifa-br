@@ -26,8 +26,8 @@ server {
   listen 443  ssl;
   server_name  ${NGINX_SERVER_NAME};
 
-  ssl_certificate /etc/letsencrypt/live/example.org/fullchain.pem;
-  ssl_certificate_key /etc/letsencrypt/live/example.org/privkey.pem;
+  ssl_certificate /etc/letsencrypt/live/ifabr.org/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/ifabr.org/privkey.pem;
   include /etc/letsencrypt/options-ssl-nginx.conf;
   ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
   
