@@ -6,10 +6,16 @@ upstream frontend {
 }
 server {
     listen 80;
-    server_name ${NGINX_SERVER_NAME} www.${NGINX_SERVER_NAME};
+    server_name www.${NGINX_SERVER_NAME};
     location / {
         return 301 https://$host$request_uri;
     }    
+}
+
+server {
+    listen 443;
+    server_name ${NGINX_SERVER_NAME};
+    return 301 http://www.${NGINX_SERVER_NAME}$request_uri;
 }
 
 server {  
@@ -24,7 +30,7 @@ server {
 	gzip_types text/plain text/css application/json application/x-javascript application/javascript text/xml application/xml application/xml+rss text/javascript;
 
   listen 443 ssl;
-  server_name  ${NGINX_SERVER_NAME} www.${NGINX_SERVER_NAME};
+  server_name  www.${NGINX_SERVER_NAME};
 
   ssl_certificate /etc/letsencrypt/live/ifabr.org/fullchain.pem;
   ssl_certificate_key /etc/letsencrypt/live/ifabr.org/privkey.pem;
