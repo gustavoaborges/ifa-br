@@ -13,7 +13,9 @@ server {
 }
 
 server {
-    listen 443;
+    listen 443 ssl;
+    ssl_certificate /etc/letsencrypt/live/ifabr.org/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/ifabr.org/privkey.pem;
     server_name ${NGINX_SERVER_NAME};
     return 301 http://www.${NGINX_SERVER_NAME}$request_uri;
 }
