@@ -40,9 +40,6 @@ server {
   ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
   
 
-  location /.well-known/acme-challenge/ {
-    root /var/www/certbot;
-  }
   location ~ /\+\+api\+\+($|/.*) {
       rewrite ^/(\+\+api\+\+\/?)+($|/.*) /VirtualHostBase/https/$server_name/IFABR/++api++/VirtualHostRoot/$2 break;
       proxy_pass http://backend;
