@@ -56,6 +56,9 @@ server {
           expires +1y;
           proxy_pass http://frontend;
       }
+      location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+      }
 
       proxy_set_header        Host $host;
       proxy_set_header        X-Real-IP $remote_addr;
@@ -64,9 +67,6 @@ server {
       proxy_redirect http:// https://;
       proxy_pass http://frontend;
   
-      location /.well-known/acme-challenge/ {
-        root /var/www/certbot;
-      }
   }
   
 }
