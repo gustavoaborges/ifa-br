@@ -64,9 +64,9 @@ server {
       proxy_redirect http:// https://;
       proxy_pass http://frontend;
   
-  }
-  location /.well-known/acme-challenge/ {
-    root /var/www/certbot;
+      location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+      }
   }
   
 }
