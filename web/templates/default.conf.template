@@ -6,6 +6,7 @@ upstream frontend {
 }
 server {
     listen 80;
+    listen [::]:80;
     server_name www.${NGINX_SERVER_NAME};
     server_tokens off;
 
