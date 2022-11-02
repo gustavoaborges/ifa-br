@@ -7,6 +7,11 @@ upstream frontend {
 server {
     listen 80;
     server_name www.${NGINX_SERVER_NAME};
+    server_tokens off;
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
     location / {
         return 301 https://$host$request_uri;
     }    
@@ -44,9 +49,6 @@ server {
       rewrite ^/(\+\+api\+\+\/?)+($|/.*) /VirtualHostBase/https/$server_name/IFABR/++api++/VirtualHostRoot/$2 break;
       proxy_pass http://backend;
   }
-  location /.well-known/acme-challenge/ {
-        root /var/www/certbot;
-      }
   location ~ / {
       location ~* \.(js|jsx|css|less|swf|eot|ttf|otf|woff|woff2)$ {
           add_header Cache-Control "public";
